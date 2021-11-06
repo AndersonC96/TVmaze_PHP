@@ -6,8 +6,8 @@
         $category = $_GET['category'];// Pega a categoria
         //$array = filter($array, $category);// Filtra a array
     }else{// Se não existir a categoria
-        $category = "";// Pega a categoria
-        //$categoria = "comedy";
+        //$category = "";// Pega a categoria
+        $categoria = "comedy";
     }
 ?>
 <!DOCTYPE html>
