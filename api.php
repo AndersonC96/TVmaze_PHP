@@ -56,6 +56,7 @@
             $serie->setPremiered($array['premiered']);// Pegue a data de lançamento
             $serie->setNetwork($array['network']['name']);// Pegue a rede
             $serie->setWebChannel($array['webChannel']['name']);// Pegue a rede web
+            $serie->setEnded($array['ended']);// Pegue a data de encerramento
             for($i = 0; $i < count($array['_embedded']['cast']); $i++){// Para cada item da array
                 /*$serie->addCast(new Cast($array['_embedded']['cast'][$i]['person']['name'], $array['_embedded']['cast'][$i]['character']['name']));// Adicione o item na categoria*/
                 $imageCast = $array['_embedded']['cast'][$i]['person']['image']['medium'];// Pegue a imagem
