@@ -58,6 +58,7 @@
             $serie->setWebChannel($array['webChannel']['name']);// Pegue a rede web
             $serie->setEnded($array['ended']);// Pegue a data de encerramento
             $serie->setAverageRuntime($array['averageRuntime']);// Pegue o tempo de duração médio
+            $serie->setOfficialSite($array['officialSite']);// Pegue o site oficial
             for($i = 0; $i < count($array['_embedded']['cast']); $i++){// Para cada item da array
                 /*$serie->addCast(new Cast($array['_embedded']['cast'][$i]['person']['name'], $array['_embedded']['cast'][$i]['character']['name']));// Adicione o item na categoria*/
                 $imageCast = $array['_embedded']['cast'][$i]['person']['image']['medium'];// Pegue a imagem
