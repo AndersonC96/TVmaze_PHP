@@ -10,6 +10,7 @@
         private $genres;
         private $status;
         private $schedule;
+        private $runtime;
         public function __construct($title, $star, $image, $id){
             $this->title = $title;
             $this->star = $star;
@@ -46,6 +47,9 @@
         public function getSchedule(){
             return $this->schedule;
         }
+        public function getRuntime(){
+            return $this->runtime;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -63,5 +67,8 @@
         }
         public function setLanguage($language){
             $this->language = $language;
+        }
+        public function setRuntime($runtime){
+            $this->runtime = $runtime;
         }
     }
