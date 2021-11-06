@@ -50,6 +50,9 @@
         public function getRuntime(){
             return $this->runtime;
         }
+        public function getPremiered(){
+            return $this->premiered;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -70,5 +73,8 @@
         }
         public function setRuntime($runtime){
             $this->runtime = $runtime;
+        }
+        public function setPremiered($premiered){
+            $this->premiered = $premiered;
         }
     }
