@@ -62,6 +62,9 @@
         public function getEnded(){
             return $this->ended;
         }
+        public function getAverageRuntime(){
+            return $this->averageRuntime;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -94,5 +97,8 @@
         }
         public function setEnded($ended){
             $this->ended = $ended;
+        }
+        public function setAverageRuntime($averageRuntime){
+            $this->averageRuntime = $averageRuntime;
         }
     }
