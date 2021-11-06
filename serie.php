@@ -102,6 +102,7 @@
                             <h2><strong>Language: </strong><?= $serie->getLanguage() ?></h2>
                             <h2><strong>Status: </strong><?= $serie->getStatus() ?></h2>
                             <h2><strong>Schedule: </strong><?= $serie->getSchedule() ?></h2>
+                            <h2><strong>Runtime: </strong><?= $serie->getRuntime() ?></h2>
                         </div>
                     </div>
                 </div>
