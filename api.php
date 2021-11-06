@@ -6,9 +6,9 @@
         $series = $series[ucwords($category)];
     }
     function creacion(){// Crie a array com os dados da API
-        $url = "http://api.tvmaze.com/shows";
-        $array = json_decode(file_get_contents($url), TRUE);
-        return $array;
+        $url = "http://api.tvmaze.com/shows";// URL da API
+        $array = json_decode(file_get_contents($url), TRUE);// Crie a array com os dados da API
+        return $array;// Retorne a array com os dados da API
     }
     function getValores($array){// Pegue os valores da categoria
         $series = array();// Crie a array com os dados da API
@@ -34,6 +34,7 @@
     function getValoresIndividual($id){// Pegue os valores da categoria
         require_once 'serieIndividual.php';// Importe o arquivo
         require_once 'cast.php';// Importe o arquivo
+        require_once 'episodes.php';// Importe o arquivo
         $url = "http://api.tvmaze.com/shows/" . $id . '?embed=cast';// Crie a url
         $array = json_decode(file_get_contents($url), TRUE);// Crie a array com os dados da API
         $serieTotal = array();
@@ -65,6 +66,10 @@
                 $castIndi = new Cast($array['_embedded']['cast'][$i]['person']['name'], $array['_embedded']['cast'][$i]['character']['name'], $imageCast);// Crie a array com os dados da API
                 $cast[] = $castIndi;// Adicione o item na categoria
             }
+            //for($i = 0; $i < count($array['_embedded']['episodes']); $i++){// Para cada item da array
+                /*$serie->addEpisodes(new Episodes($array['_embedded']['episodes'][$i]['name'], $array['_embedded']['episodes'][$i]['season'], $array['_embedded']['episodes'][$i]['number'], $array['_embedded']['episodes'][$i]['airdate'], $array['_embedded']['episodes'][$i]['summary']));// Adicione o item na categoria*/
+                //$imageEpisodes = $array(['_embedded']['episodes'][$i]['image']['medium']);// Pegue a imagem
+            //}
             $serieTotal[] = $serie;// Adicione o item na categoria
             $serieTotal[] = $cast;
         }
