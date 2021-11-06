@@ -7,7 +7,7 @@
         //$array = filter($array, $category);// Filtra a array
     }else{// Se não existir a categoria
         //$category = "";// Pega a categoria
-        $categoria = "comedy";
+        $categoria = "drama";
     }
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
                 <?php if (count($series) > 5) : ?>
                 <div id="btnAgregar">
                     <hr>
-                    <img id="btnMore" src="images/more.png" alt="Agregar Más">
+                    <img id="btnMore" src="images/more.png" alt="add more">
                 </div>
                 <?php endif; ?>
             </div>
