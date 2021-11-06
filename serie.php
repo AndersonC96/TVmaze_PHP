@@ -102,7 +102,7 @@
                             <h2><strong>Language: </strong><?= $serie->getLanguage() ?></h2>
                             <h2><strong>Status: </strong><?= $serie->getStatus() ?></h2>
                             <h2><strong>Schedule: </strong><?= $serie->getSchedule() ?></h2>
-                            <h2><strong>Runtime: </strong><?= $serie->getRuntime() ?> minutes</h2>
+                            <h2><strong>Runtime: </strong><?= $serie->getRuntime() ?> minutes | <strong>Average Runtime: </strong><?= $serie->getAverageRuntime() ?> minutes</h2>
                             <h2><strong>Debut: </strong><?= $serie->getPremiered() ?> | <strong>Ended: </strong><?= $serie->getEnded() ?></h2>
                             <h2><strong>Network: </strong><?= $serie->getNetwork() ?> | <strong>Streaming: </strong><?= $serie->getWebChannel() ?></h2>
                         </div>
