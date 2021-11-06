@@ -52,6 +52,7 @@
             $serie->setGenres($array['genres']);// Pegue o genero
             $serie->setStatus($array['status']);// Pegue o status
             $serie->setSchedule($array['schedule']['days'][0] . ' at ' . $array['schedule']['time']);// Pegue o horario
+            $serie->setRuntime($array['runtime']);// Pegue o tempo de duração
             for($i = 0; $i < count($array['_embedded']['cast']); $i++){// Para cada item da array
                 /*$serie->addCast(new Cast($array['_embedded']['cast'][$i]['person']['name'], $array['_embedded']['cast'][$i]['character']['name']));// Adicione o item na categoria*/
                 $imageCast = $array['_embedded']['cast'][$i]['person']['image']['medium'];// Pegue a imagem
