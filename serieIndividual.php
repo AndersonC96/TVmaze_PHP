@@ -53,6 +53,9 @@
         public function getPremiered(){
             return $this->premiered;
         }
+        public function getNetwork(){
+            return $this->network;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -76,5 +79,8 @@
         }
         public function setPremiered($premiered){
             $this->premiered = $premiered;
+        }
+        public function setNetwork($network){
+            $this->network = $network;
         }
     }
