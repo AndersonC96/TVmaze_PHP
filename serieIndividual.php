@@ -59,6 +59,9 @@
         public function getWebChannel(){
             return $this->webChannel;
         }
+        public function getEnded(){
+            return $this->ended;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -88,5 +91,8 @@
         }
         public function setWebChannel($webChannel){
             $this->webChannel = $webChannel;
+        }
+        public function setEnded($ended){
+            $this->ended = $ended;
         }
     }
