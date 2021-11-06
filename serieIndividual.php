@@ -56,6 +56,9 @@
         public function getNetwork(){
             return $this->network;
         }
+        public function getWebChannel(){
+            return $this->webChannel;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -82,5 +85,8 @@
         }
         public function setNetwork($network){
             $this->network = $network;
+        }
+        public function setWebChannel($webChannel){
+            $this->webChannel = $webChannel;
         }
     }
