@@ -65,6 +65,9 @@
         public function getAverageRuntime(){
             return $this->averageRuntime;
         }
+        public function getOfficialSite(){
+            return $this->officialSite;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -100,5 +103,8 @@
         }
         public function setAverageRuntime($averageRuntime){
             $this->averageRuntime = $averageRuntime;
+        }
+        public function setOfficialSite($officialSite){
+            $this->officialSite = $officialSite;
         }
     }
