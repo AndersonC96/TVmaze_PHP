@@ -122,6 +122,18 @@
                     </div>
                     <?php endfor; ?>
                 </div>
+                <!--<hr>
+                <h2 id="episodes">Episodes '<?= $serie->getTitle() ?>'</h2>
+                <div class="episodes">
+                    <?php
+                        for($i = 0; $i < count($serie->getEpisodes()); $i++) :// para cada episodio
+                    ?>
+                    <div class="cardEpisode">
+                        <img src="<?= $serie->getEpisodes()[$i]->getImage() ?>" alt="Serie">
+                        <h3><?= $serie->getEpisodes()[$i]->getName() ?></h3>
+                        <p><span>Season: </span><?= $serie->getEpisodes()[$i]->getSeason() ?> | <span>Episode: </span><?= $serie->getEpisodes()[$i]->getNumber() ?></p>
+                    </div>-->
+                    <!--<?php endfor; ?>-->
         </main>
         <script>
             document.getElementById("btnBack").onclick = function(){// quando clicar no botao de voltar
