@@ -105,7 +105,7 @@
                             <h2><strong>Runtime: </strong><?= $serie->getRuntime() ?> minutes | <strong>Average Runtime: </strong><?= $serie->getAverageRuntime() ?> minutes</h2>
                             <h2><strong>Debut: </strong><?= $serie->getPremiered() ?> | <strong>Ended: </strong><?= $serie->getEnded() ?></h2>
                             <h2><strong>Network: </strong><?= $serie->getNetwork() ?> | <strong>Streaming: </strong><?= $serie->getWebChannel() ?></h2>
-                            <h2><strong>Site: </strong><?= $serie->getOfficialSite() ?></h2>
+                            <!--<h2><strong>Site: </strong><?= $serie->getOfficialSite() ?></h2>-->
                         </div>
                     </div>
                 </div>
