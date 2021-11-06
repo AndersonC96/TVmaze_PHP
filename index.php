@@ -46,7 +46,7 @@
                     <div class="cardSerie">
                         <h3 id="estrellaTexto"><?= $series[$i][1] ?></h3>
                         <a href="serie.php?id=<?= $series[$i][3] ?>">
-                            <img src="<?= $series[$i][2] ?>" alt="Serie">
+                            <img src="<?= $series[$i][2]?>" alt="Serie">
                         </a>
                         <div id="textoSerie">
                             <a href="serie.php?id=<?= $series[$i][3] ?>">
