@@ -68,6 +68,9 @@
         public function getOfficialSite(){
             return $this->officialSite;
         }
+        public function getRating(){
+            return $this->rating;
+        }
         public function setType($type){
             $this->type = $type;
         }
@@ -106,5 +109,8 @@
         }
         public function setOfficialSite($officialSite){
             $this->officialSite = $officialSite;
+        }
+        public function setRating($rating){
+            $this->rating = $rating;
         }
     }
