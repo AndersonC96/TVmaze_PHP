@@ -41,7 +41,7 @@
                 <div class="principal">
                     <?php
                         $series = $series[ucwords($categoria)];// Pega a categoria
-                        for ($i = 0; $i < (count($series) > 5 ? 5 : count($series)); $i++) :// Verifica se a quantidade de series é maior que 5
+                        for ($i = 0; $i < (count($series) > 10 ? 10 : count($series)); $i++) :// Verifica se a quantidade de series é maior que 5
                     ?>
                     <div class="cardSerie">
                         <h3 id="estrellaTexto"><?= $series[$i][1] ?></h3>
