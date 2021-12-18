@@ -24,7 +24,7 @@
                     $series[$categoria] = array();// Crie a categoria
                 }
                 array_push($series[$categoria], $array[$i]);// Adicione o item na categoria*/
-                $image = str_replace('http', 'https', $array[$i]['image']['medium']);// Pegue a imagem
+                $image = str_replace('http', 'http', $array[$i]['image']['medium']);// Pegue a imagem
                 $serie = array($array[$i]['name'], $array[$i]['rating']['average'], $image, $array[$i]['id']);// Crie a array com os dados da API
                 $series[$array[$i]['genres'][$j]][] = $serie;// Adicione o item na categoria
             }
@@ -60,6 +60,7 @@
             $serie->setEnded($array['ended']);// Pegue a data de encerramento
             $serie->setAverageRuntime($array['averageRuntime']);// Pegue o tempo de duração médio
             $serie->setOfficialSite($array['officialSite']);// Pegue o site oficial
+            $serie->setRating($array['rating']['average']);// Pegue o site oficial
             for($i = 0; $i < count($array['_embedded']['cast']); $i++){// Para cada item da array
                 /*$serie->addCast(new Cast($array['_embedded']['cast'][$i]['person']['name'], $array['_embedded']['cast'][$i]['character']['name']));// Adicione o item na categoria*/
                 $imageCast = $array['_embedded']['cast'][$i]['person']['image']['medium'];// Pegue a imagem
