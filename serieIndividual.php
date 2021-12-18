@@ -16,6 +16,7 @@
             $this->star = $star;
             $this->image = $image;
             $this->id = $id;
+            $this->id = $country;
         }
         public function getTitle(){
             return $this->title;
