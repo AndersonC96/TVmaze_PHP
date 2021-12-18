@@ -32,6 +32,7 @@
         return $series;// Retorne a array com os dados da API
     }
     function getValoresIndividual($id){// Pegue os valores da categoria
+        error_reporting(E_ERROR | E_PARSE);// Desabilite o erro de sintaxe
         require_once 'serieIndividual.php';// Importe o arquivo
         require_once 'cast.php';// Importe o arquivo
         require_once 'episodes.php';// Importe o arquivo
