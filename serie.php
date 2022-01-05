@@ -79,13 +79,13 @@
                     <img src="<?= $serie->getImage() ?>" alt="Imagen Serie <?= $serie->getTitle() ?>">
                     <div class="informacionPrincipal">
                         <div class="sinopsis">
-                            <h2>SYNOPSIS</h2>
+                            <h2>SINOPSE</h2>
                             <h3><?= $serie->getSummary() ?></h3>
                         </div>
                         <hr>
                         <div class="informacionSerie">
-                            <h2><strong>Show Type: </strong><?= $serie->getType() ?></h2>
-                            <h2><strong>Genres: </strong>
+                            <h2><strong>Tipo: </strong><?= $serie->getType() ?></h2>
+                            <h2><strong>Gêneros: </strong>
                                 <?php
                                     for($i = 0; $i < count($serie->getGenres()); $i++) :// para cada genero
                                         /*if($i == count($serie->getGenres()) - 1) :// se for o ultimo genero
@@ -99,14 +99,14 @@
                                 </a>
                                 <?php endfor; ?>
                             </h2>
-                            <h2><strong>Language: </strong><?= $serie->getLanguage() ?></h2>
+                            <h2><strong>Língua: </strong><?= $serie->getLanguage() ?></h2>
                             <h2><strong>Status: </strong><?= $serie->getStatus() ?></h2>
-                            <h2><strong>Schedule: </strong><?= $serie->getSchedule() ?></h2>
-                            <h2><strong>Runtime: </strong><?= $serie->getRuntime() ?> minutes | <strong>Average Runtime: </strong><?= $serie->getAverageRuntime() ?> minutes</h2>
-                            <h2><strong>Debut: </strong><?= $serie->getPremiered() ?> | <strong>Ended: </strong><?= $serie->getEnded() ?></h2>
+                            <h2><strong>Horário: </strong><?= $serie->getSchedule() ?></h2>
+                            <h2><strong>Duração: </strong><?= $serie->getRuntime() ?> minutes | <strong>Tempo médio de duração: </strong><?= $serie->getAverageRuntime() ?> minutes</h2>
+                            <h2><strong>Estreia: </strong><?= date('d/m/Y', strtotime($serie->getPremiered())) ?> | <strong>Finalizada: </strong><?= date('d/m/Y', strtotime($serie->getEnded())) ?></h2>
                             <h2><strong>Network: </strong><?= $serie->getNetwork() ?> | <strong>Streaming: </strong><?= $serie->getWebChannel() ?></h2>
-                            <!--<h2 href=""><strong>Site: </strong><?= $serie->getOfficialSite() ?></h2>-->
-                            <h2><strong>Rating: </strong><?= $serie->getRating() ?></h2>
+                            <h2 href="<?= $serie->getOfficialSite() ?>"><strong>Site: </strong><?= $serie->getOfficialSite() ?></h2>
+                            <h2><strong>Avaliação: </strong><?= $serie->getRating() ?>/10</h2>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="cardCast">
                         <img src="<?= $casting[$i]->getImage() ?>" alt="Serie">
                         <h3><?= $casting[$i]->getName() ?></h3>
-                        <p><span>As </span> <?= $casting[$i]->getAlias() ?></p>
+                        <p><span>Personagem </span> <?= $casting[$i]->getAlias() ?></p>
                     </div>
                     <?php endfor; ?>
                 </div>
