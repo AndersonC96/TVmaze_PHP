@@ -87,25 +87,25 @@
                             <h2><strong>Tipo: </strong><?= $serie->getType() ?></h2>
                             <h2><strong>Gêneros: </strong>
                                 <?php
-                                    for($i = 0; $i < count($serie->getGenres()); $i++) :// para cada genero
-                                        /*if($i == count($serie->getGenres()) - 1) :// se for o ultimo genero
-                                            echo $serie->getGenres()[$i];// imprime o genero
-                                        else :// se nao for o ultimo genero
-                                            echo $serie->getGenres()[$i] . ', ';// imprime o genero e a virgula
-                                        endif;*/
+                                    $genres = implode(', ', $serie->getGenres());
+                                    echo $genres;
                                 ?>
-                                <a href="/?category=<?= $serie->getGenres()[$i] ?>">
-                                    <?= $serie->getGenres()[$i] ?>
-                                </a>
-                                <?php endfor; ?>
                             </h2>
                             <h2><strong>Língua: </strong><?= $serie->getLanguage() ?></h2>
                             <h2><strong>Status: </strong><?= $serie->getStatus() ?></h2>
                             <h2><strong>Horário: </strong><?= $serie->getSchedule() ?></h2>
                             <h2><strong>Duração: </strong><?= $serie->getRuntime() ?> minutes | <strong>Tempo médio de duração: </strong><?= $serie->getAverageRuntime() ?> minutes</h2>
                             <h2><strong>Estreia: </strong><?= date('d/m/Y', strtotime($serie->getPremiered())) ?> | <strong>Finalizada: </strong><?= date('d/m/Y', strtotime($serie->getEnded())) ?></h2>
-                            <h2><strong>Network: </strong><?= $serie->getNetwork() ?> | <strong>Streaming: </strong><?= $serie->getWebChannel() ?></h2>
-                            <h2 href="<?= $serie->getOfficialSite() ?>"><strong>Site: </strong><?= $serie->getOfficialSite() ?></h2>
+                            <h2><strong>Network: </strong><?= $serie->getNetwork() ?> | <strong>Streaming: </strong><?php
+                                if($serie->getWebChannel == NULL) {
+                                    echo 'Nenhum streaming encontrado';
+                                }else{
+                                    echo $serie->getWebChannel();
+                                }
+                            ?></h2>
+                            <?php if($serie->getOfficialSite()){?>
+                            <h2><strong>Site:</strong> <a href="<?= $serie->getOfficialSite() ?>"><?= $serie->getOfficialSite() ?></a></h2>
+                            <?php } ?>
                             <h2><strong>Avaliação: </strong><?= $serie->getRating() ?>/10</h2>
                         </div>
                     </div>
