@@ -68,6 +68,26 @@
     </section>
     <?php endif; ?>
 
+    <!-- Crew Section -->
+    <?php if(!empty($show['_embedded']['crew'])): ?>
+    <section class="mb-5">
+        <h3 class="mb-4 text-white"><i class="fa fa-video me-2 text-primary"></i>Crew</h3>
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
+            <?php foreach($show['_embedded']['crew'] as $member): ?>
+            <div class="col">
+                <div class="d-flex align-items-center bg-dark p-2 rounded-3 border border-secondary h-100">
+                    <img src="<?= $member['person']['image']['medium'] ?? 'https://via.placeholder.com/60' ?>" class="cast-img me-3" alt="">
+                    <div>
+                        <div class="fw-bold small text-white"><?= $member['person']['name'] ?></div>
+                        <div class="small text-muted"><?= $member['type'] ?></div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+
     <!-- Seasons & Episodes Section -->
     <?php if(!empty($seasons) && !empty($show['_embedded']['episodes'])): 
         // Group episodes by season

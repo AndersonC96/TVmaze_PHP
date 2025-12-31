@@ -25,7 +25,7 @@ class TVMazeService
     {
         // Handle array for embed parameters properly for http_build_query
         return $this->request('GET', "shows/{$id}", [
-            'embed' => ['cast', 'episodes']
+            'embed' => ['cast', 'episodes', 'crew']
         ]);
     }
 
