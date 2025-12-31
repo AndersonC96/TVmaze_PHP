@@ -128,6 +128,4 @@ Este projeto está licenciado sob a **Licença MIT**. Sinta-se à vontade para u
 
 ---
 
-<p align="center">
-    Desenvolvido por [Anderson Cavalcante](https://www.linkedin.com/in/andersoncavalcante96/)
-</p>
+Desenvolvido por [Anderson Cavalcante](https://www.linkedin.com/in/andersoncavalcante96/)
