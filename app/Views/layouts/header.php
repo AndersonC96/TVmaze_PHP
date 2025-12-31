@@ -31,8 +31,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Movies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Series</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/show?q=movie">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Series</a></li>
                 </ul>
                 <form class="d-flex position-relative search-form" action="/show" method="GET">
                     <input class="form-control me-2 rounded-pill search-input" type="search" name="q" placeholder="Search..." aria-label="Search">
