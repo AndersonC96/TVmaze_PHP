@@ -68,30 +68,86 @@
     </section>
     <?php endif; ?>
 
-    <!-- Episodes Section (Simple List) -->
-    <?php if(!empty($show['_embedded']['episodes'])): ?>
+    <!-- Seasons & Episodes Section -->
+    <?php if(!empty($seasons) && !empty($show['_embedded']['episodes'])): 
+        // Group episodes by season
+        $episodesBySeason = [];
+        foreach($show['_embedded']['episodes'] as $ep) {
+            $episodesBySeason[$ep['season']][] = $ep;
+        }
+    ?>
     <section>
-        <h3 class="mb-4 text-white"><i class="fa fa-list-ol me-2 text-primary"></i>Episodes</h3>
-        <div class="card bg-dark border-secondary">
-            <ul class="list-group list-group-flush bg-transparent">
-                <?php 
-                $episodes = $show['_embedded']['episodes'];
-                $lastSeason = 0;
-                foreach($episodes as $ep):
-                    if($ep['season'] != $lastSeason) {
-                        echo "<li class='list-group-item bg-secondary text-white fw-bold'>Season " . $ep['season'] . "</li>";
-                        $lastSeason = $ep['season'];
-                    }
-                ?>
-                <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="fw-bold me-3 text-muted">S<?= $ep['season'] ?> E<?= $ep['number'] ?></span>
-                        <?= $ep['name'] ?>
+        <div class="d-flex align-items-center mb-4">
+            <h3 class="text-white mb-0"><i class="fa fa-layer-group me-2 text-primary"></i>Seasons</h3>
+        </div>
+
+        <!-- Season Cards Grid -->
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3 mb-5">
+            <?php foreach($seasons as $season): 
+                $seasonImg = $season['image']['medium'] ?? 'https://via.placeholder.com/210x295?text=S'.$season['number'];
+                $isActive = $season['number'] == 1 ? 'border-primary active' : 'border-secondary';
+            ?>
+            <div class="col">
+                <div class="card bg-dark text-white season-card-action cursor-pointer h-100 <?= $isActive ?>" 
+                     data-season="<?= $season['id'] ?>" 
+                     data-season-num="<?= $season['number'] ?>"
+                     style="transition: all 0.2s;">
+                    <img src="<?= $seasonImg ?>" class="card-img-top" alt="Season <?= $season['number'] ?>" style="height: 200px; object-fit: cover; opacity: 0.8;">
+                    <div class="card-body p-2 text-center">
+                        <h5 class="card-title mb-0">Season <?= $season['number'] ?></h5>
+                        <small class="text-muted"><?= $season['episodeOrder'] ?? count($episodesBySeason[$season['number']] ?? []) ?> Episodes</small>
                     </div>
-                    <span class="badge bg-dark"><?= $ep['airdate'] ?></span>
-                </li>
-                <?php endforeach; ?>
-            </ul>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Episodes List Container -->
+        <div id="episodes-container" class="bg-dark rounded-3 p-4 border border-secondary">
+            <h4 id="selected-season-title" class="text-white mb-4 border-bottom border-secondary pb-2">Season 1</h4>
+            
+            <?php foreach($episodesBySeason as $seasonNum => $seasonEpisodes): 
+                $display = $seasonNum == 1 ? '' : 'd-none';
+            ?>
+            <div id="season-<?= $seasonNum ?>" class="season-episodes <?= $display ?>">
+                <div class="accordion" id="accordionSeason<?= $seasonNum ?>">
+                    <?php foreach($seasonEpisodes as $index => $ep): 
+                        $collapseId = "collapseS{$seasonNum}E{$ep['number']}";
+                        $headingId = "headingS{$seasonNum}E{$ep['number']}";
+                    ?>
+                    <div class="accordion-item bg-transparent border-secondary mb-2">
+                        <h2 class="accordion-header" id="<?= $headingId ?>">
+                            <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
+                                <span class="fw-bold me-3 text-primary">E<?= $ep['number'] ?></span>
+                                <span class="flex-grow-1"><?= $ep['name'] ?></span>
+                                <span class="badge bg-secondary ms-2"><?= $ep['airdate'] ?></span>
+                            </button>
+                        </h2>
+                        <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>" data-bs-parent="#accordionSeason<?= $seasonNum ?>">
+                            <div class="accordion-body text-light-50" style="background: rgba(255,255,255,0.02);">
+                                <div class="row">
+                                    <?php if(isset($ep['image']['medium'])): ?>
+                                    <div class="col-md-3">
+                                        <img src="<?= $ep['image']['medium'] ?>" class="img-fluid rounded mb-2" alt="Episode Image">
+                                    </div>
+                                    <div class="col-md-9">
+                                    <?php else: ?>
+                                    <div class="col-12">
+                                    <?php endif; ?>
+                                        <?= $ep['summary'] ?? '<p>No summary available.</p>' ?>
+                                        <div class="mt-2">
+                                            <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $ep['runtime'] ?> min</small>
+                                            <a href="<?= $ep['url'] ?>" target="_blank" class="ms-3 text-decoration-none small text-info">TVMaze Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
         </div>
     </section>
     <?php endif; ?>

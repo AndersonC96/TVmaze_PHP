@@ -16,6 +16,11 @@ class TVMazeService
         return $this->request('GET', 'search/shows', ['q' => $query]);
     }
 
+    public function getSeasons($id)
+    {
+        return $this->request('GET', "shows/{$id}/seasons");
+    }
+
     public function getShowDetails($id)
     {
         // Handle array for embed parameters properly for http_build_query

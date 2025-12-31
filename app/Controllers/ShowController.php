@@ -33,9 +33,11 @@ class ShowController extends Controller
         if (isset($_GET['id'])) {
             $id = intval($_GET['id']);
             $show = $this->service->getShowDetails($id);
+            $seasons = $this->service->getSeasons($id);
             
             $this->view('shows/detail', [
                 'show' => $show,
+                'seasons' => $seasons,
                 'title' => $show['name']
             ]);
             return;
