@@ -53,7 +53,7 @@
     <section class="mb-5">
         <h3 class="mb-4 text-white"><i class="fa fa-users me-2 text-primary"></i>Cast</h3>
         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
-            <?php foreach(array_slice($show['_embedded']['cast'], 0, 12) as $actor): ?>
+            <?php foreach($show['_embedded']['cast'] as $actor): ?>
             <div class="col">
                 <div class="d-flex align-items-center bg-dark p-2 rounded-3 border border-secondary h-100">
                     <img src="<?= $actor['person']['image']['medium'] ?? 'https://via.placeholder.com/60' ?>" class="cast-img me-3" alt="">
