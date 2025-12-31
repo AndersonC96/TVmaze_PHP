@@ -62,11 +62,11 @@ O projeto é organizado para manter a lógica e a apresentação distintas:
 
 ### Dashboard
 > *Descubra séries em alta com um layout de grid elegante.*
-![Dashboard Preview](https://via.placeholder.com/800x450?text=Dashboard+Screenshot)
+![Dashboard Preview](public/images/screenshots/dashboard.png)
 
 ### Detalhes da Série e Seleção de Temporada
 > *Cards de Temporada Interativos e Listas de Episódios.*
-![Details Preview](https://via.placeholder.com/800x450?text=Details+Page+Screenshot)
+![Details Preview](public/images/screenshots/details.png)
 
 ---
 
@@ -129,5 +129,5 @@ Este projeto está licenciado sob a **Licença MIT**. Sinta-se à vontade para u
 ---
 
 <p align="center">
-    Construído por (Anderson)[https://www.linkedin.com/in/andersoncavalcante96]
+    Construído por [Anderson Cavalcante](https://www.linkedin.com/in/andersoncavalcante96/)
 </p>
