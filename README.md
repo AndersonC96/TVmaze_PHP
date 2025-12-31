@@ -129,5 +129,5 @@ Este projeto está licenciado sob a **Licença MIT**. Sinta-se à vontade para u
 ---
 
 <p align="center">
-    Construído por [Anderson Cavalcante](https://www.linkedin.com/in/andersoncavalcante96/)
+    Desenvolvido por [Anderson Cavalcante](https://www.linkedin.com/in/andersoncavalcante96/)
 </p>
