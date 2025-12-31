@@ -120,7 +120,7 @@
                             <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
                                 <span class="fw-bold me-3 text-primary">E<?= $ep['number'] ?></span>
                                 <span class="flex-grow-1"><?= $ep['name'] ?></span>
-                                <span class="badge bg-secondary ms-2"><?= $ep['airdate'] ?></span>
+                                <span class="badge bg-secondary ms-2"><?= !empty($ep['airdate']) ? date('d/m/Y', strtotime($ep['airdate'])) : '' ?></span>
                             </button>
                         </h2>
                         <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>" data-bs-parent="#accordionSeason<?= $seasonNum ?>">
