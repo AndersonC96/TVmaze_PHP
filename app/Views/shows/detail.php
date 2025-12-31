@@ -52,9 +52,11 @@
     <?php if(!empty($show['_embedded']['cast'])): ?>
     <section class="mb-5">
         <h3 class="mb-4 text-white"><i class="fa fa-users me-2 text-primary"></i>Cast</h3>
-        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
-            <?php foreach($show['_embedded']['cast'] as $actor): ?>
-            <div class="col">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3" id="cast-container">
+            <?php foreach($show['_embedded']['cast'] as $index => $actor): 
+                $hiddenClass = $index >= 6 ? 'd-none cast-hidden' : '';
+            ?>
+            <div class="col <?= $hiddenClass ?>">
                 <div class="d-flex align-items-center bg-dark p-2 rounded-3 border border-secondary h-100">
                     <img src="<?= $actor['person']['image']['medium'] ?? 'https://via.placeholder.com/60' ?>" class="cast-img me-3" alt="">
                     <div>
@@ -65,6 +67,13 @@
             </div>
             <?php endforeach; ?>
         </div>
+        <?php if(count($show['_embedded']['cast']) > 6): ?>
+        <div class="text-center mt-3">
+            <button id="btn-show-more-cast" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                Show More <i class="fa fa-chevron-down ms-1"></i>
+            </button>
+        </div>
+        <?php endif; ?>
     </section>
     <?php endif; ?>
 
@@ -72,9 +81,11 @@
     <?php if(!empty($show['_embedded']['crew'])): ?>
     <section class="mb-5">
         <h3 class="mb-4 text-white"><i class="fa fa-video me-2 text-primary"></i>Crew</h3>
-        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3">
-            <?php foreach($show['_embedded']['crew'] as $member): ?>
-            <div class="col">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3" id="crew-container">
+            <?php foreach($show['_embedded']['crew'] as $index => $member): 
+                $hiddenClass = $index >= 6 ? 'd-none crew-hidden' : '';
+            ?>
+            <div class="col <?= $hiddenClass ?>">
                 <div class="d-flex align-items-center bg-dark p-2 rounded-3 border border-secondary h-100">
                     <img src="<?= $member['person']['image']['medium'] ?? 'https://via.placeholder.com/60' ?>" class="cast-img me-3" alt="">
                     <div>
@@ -85,6 +96,13 @@
             </div>
             <?php endforeach; ?>
         </div>
+        <?php if(count($show['_embedded']['crew']) > 6): ?>
+        <div class="text-center mt-3">
+            <button id="btn-show-more-crew" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                Show More <i class="fa fa-chevron-down ms-1"></i>
+            </button>
+        </div>
+        <?php endif; ?>
     </section>
     <?php endif; ?>
 
@@ -123,8 +141,11 @@
         </div>
 
         <!-- Episodes List Container -->
-        <div id="episodes-container" class="bg-dark rounded-3 p-4 border border-secondary">
-            <h4 id="selected-season-title" class="text-white mb-4 border-bottom border-secondary pb-2">Season 1</h4>
+        <div id="episodes-container" class="mt-4">
+            <div class="d-flex align-items-center justify-content-between mb-4 border-bottom border-secondary pb-2">
+                <h3 id="selected-season-title" class="text-white mb-0">Season 1</h3>
+                <span class="badge bg-dark border border-secondary">Episodes</span>
+            </div>
             
             <?php foreach($episodesBySeason as $seasonNum => $seasonEpisodes): 
                 $display = $seasonNum == 1 ? '' : 'd-none';
@@ -135,29 +156,35 @@
                         $collapseId = "collapseS{$seasonNum}E{$ep['number']}";
                         $headingId = "headingS{$seasonNum}E{$ep['number']}";
                     ?>
-                    <div class="accordion-item bg-transparent border-secondary mb-2">
-                        <h2 class="accordion-header" id="<?= $headingId ?>">
-                            <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
-                                <span class="fw-bold me-3 text-primary">E<?= $ep['number'] ?></span>
-                                <span class="flex-grow-1"><?= $ep['name'] ?></span>
-                                <span class="badge bg-secondary ms-2"><?= !empty($ep['airdate']) ? date('d/m/Y', strtotime($ep['airdate'])) : '' ?></span>
-                            </button>
-                        </h2>
-                        <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>" data-bs-parent="#accordionSeason<?= $seasonNum ?>">
-                            <div class="accordion-body text-light-50" style="background: rgba(255,255,255,0.02);">
-                                <div class="row">
-                                    <?php if(isset($ep['image']['medium'])): ?>
-                                    <div class="col-md-3">
-                                        <img src="<?= $ep['image']['medium'] ?>" class="img-fluid rounded mb-2" alt="Episode Image">
-                                    </div>
-                                    <div class="col-md-9">
-                                    <?php else: ?>
-                                    <div class="col-12">
-                                    <?php endif; ?>
-                                        <?= $ep['summary'] ?? '<p>No summary available.</p>' ?>
-                                        <div class="mt-2">
-                                            <small class="text-muted"><i class="far fa-clock me-1"></i> <?= $ep['runtime'] ?> min</small>
-                                            <a href="<?= $ep['url'] ?>" target="_blank" class="ms-3 text-decoration-none small text-info">TVMaze Link</a>
+                    <div class="episode-card">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="<?= $headingId ?>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="false" aria-controls="<?= $collapseId ?>">
+                                    <span class="episode-number">E<?= $ep['number'] ?>&nbsp;</span>
+                                    <span class="flex-grow-1 fw-medium"><?= $ep['name'] ?></span>
+                                    <span class="small text-muted me-3"><?= !empty($ep['airdate']) ? date('d/m/Y', strtotime($ep['airdate'])) : '' ?></span>
+                                </button>
+                            </h2>
+                            <div id="<?= $collapseId ?>" class="accordion-collapse collapse" aria-labelledby="<?= $headingId ?>" data-bs-parent="#accordionSeason<?= $seasonNum ?>">
+                                <div class="accordion-body border-top border-secondary" style="background: rgba(0,0,0,0.2);">
+                                    <div class="row g-0">
+                                        <?php if(isset($ep['image']['medium'])): ?>
+                                        <div class="col-md-3 p-2">
+                                            <img src="<?= $ep['image']['medium'] ?>" class="img-fluid rounded" alt="Episode Image">
+                                        </div>
+                                        <div class="col-md-9 p-3">
+                                        <?php else: ?>
+                                        <div class="col-12 p-3">
+                                        <?php endif; ?>
+                                            <h5 class="text-white mb-3"><?= $ep['name'] ?></h5>
+                                            <div class="text-light-50 mb-3">
+                                                <?= $ep['summary'] ?? '<p class="text-muted">No summary available.</p>' ?>
+                                            </div>
+                                            
+                                            <div class="d-flex align-items-center text-muted small">
+                                                <span class="me-3"><i class="far fa-clock me-1"></i> <?= $ep['runtime'] ?> min</span>
+                                                <a href="<?= $ep['url'] ?>" target="_blank" class="text-decoration-none text-info hover-underline">TVMaze Link <i class="fa fa-external-link-alt ms-1"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
